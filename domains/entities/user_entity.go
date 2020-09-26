@@ -1,5 +1,6 @@
 package entities
 
+// UserEntity struct
 type UserEntity struct {
 	ID        int
 	Name      string

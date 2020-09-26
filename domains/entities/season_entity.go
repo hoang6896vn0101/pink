@@ -1,5 +1,6 @@
 package entities
 
+// SeasonEntity struct
 type SeasonEntity struct {
 	ID          int
 	Name        string

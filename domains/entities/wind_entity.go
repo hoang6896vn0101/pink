@@ -1,5 +1,6 @@
 package entities
 
+// WindEntity struct
 type WindEntity struct {
 	ID        int
 	Speed     float32
