@@ -1,0 +1,4 @@
+# Ignores
+infastructures/configs/development.yml
+infastructures/configs/production.yml
+infastructures/configs/sanbox.yml
