@@ -1,9 +1,12 @@
 package entities
 
+import "time"
+
+// WindEntity struct
 type WindEntity struct {
-	ID        int
+	ID        int `gorm:"primaryKey"`
 	Speed     float32
 	Deg       int
-	CreatedAt string
-	UpdatedAt string
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }

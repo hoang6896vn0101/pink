@@ -1,7 +1,10 @@
 package entities
 
+import "time"
+
+// UserEntity struct
 type UserEntity struct {
-	ID        int
+	ID        int `gorm:"primaryKey"`
 	Name      string
 	Email     string
 	FirstName string
@@ -9,6 +12,6 @@ type UserEntity struct {
 	Avatar    string
 	Bio       string
 	RoleID    int
-	CreatedAt string
-	UpdatedAt string
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }

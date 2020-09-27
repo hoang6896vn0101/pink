@@ -1,10 +1,9 @@
 package main
 
 import (
-	"fmt"
-	configs "pink/infa/configs"
+	"pink/infrastructure/databases/mysql"
 )
 
 func main() {
-	fmt.Print(configs.GetConfig("development"))
+	mysql.DB()
 }
