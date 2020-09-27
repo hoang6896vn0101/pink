@@ -1,8 +1,8 @@
-package databases
+package mysql
 
 import (
 	"fmt"
-	config "pink/infrastructure/configs"
+	"pink/config/env"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -14,7 +14,7 @@ import (
 // Return:
 // 1. *gorm.DB
 func DB() *gorm.DB {
-	conf := config.GetConfig("development").Mysql
+	conf := env.GetConfig("development").Mysql
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		conf.UserName, conf.Password, conf.Host, conf.Port, conf.DatabaseName)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})

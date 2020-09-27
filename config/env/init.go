@@ -1,4 +1,4 @@
-package configs
+package env
 
 import (
 	filepath "path/filepath"
