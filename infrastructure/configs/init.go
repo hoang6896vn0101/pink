@@ -24,19 +24,19 @@ type Config struct {
 // 1. MySQLConfig struct
 func GetConfig(env string) Config {
 	var config Config
-	configPath, err := filepath.Abs(pathConfig(env))
+	path, err := filepath.Abs(configPath(env))
 	if err != nil {
 		panic("Error path file")
 	}
-	lib.YAMLParse(&config, configPath)
+	lib.YAMLParse(&config, path)
 	return config
 }
 
-// pathConfig
+// configPath
 // Arguments:
 // 1. env => Env of instance
 // Return:
 // 1. path => path of config
-func pathConfig(env string) string {
+func configPath(env string) string {
 	return infra.ConfigPath + env + ".yaml"
 }
