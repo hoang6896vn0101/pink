@@ -1,4 +1,4 @@
 # Ignores
-infa/configs/development.yaml
-infa/configs/production.yaml
-infa/configs/sanbox.yaml
+infrastructure/configs/sanbox.yaml
+infrastructure/configs/production.yaml
+infrastructure/configs/development.yaml

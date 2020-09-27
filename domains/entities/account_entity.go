@@ -1,10 +1,12 @@
 package entities
 
-import "time"
+import (
+	"time"
+)
 
 // AccountEntity struct
 type AccountEntity struct {
-	ID        int
+	ID        int `gorm:"primaryKey"`
 	UserName  string
 	PassWord  string
 	CreatedAt time.Time

@@ -1,21 +1,19 @@
 package configs
 
 import (
-	"path/filepath"
+	filepath "path/filepath"
+	infra "pink/infrastructure"
 	lib "pink/libs"
-)
-
-var (
-	configPath = "infa/configs/"
 )
 
 // Config struct
 type Config struct {
 	Mysql struct {
-		Host     string `yaml:"host"`
-		Port     string `yaml:"port"`
-		UserName string `yaml:"user_name"`
-		Password string `yaml:"password"`
+		Host         string `yaml:"host"`
+		Port         string `yaml:"port"`
+		UserName     string `yaml:"user_name"`
+		Password     string `yaml:"password"`
+		DatabaseName string `yaml:"database_name"`
 	}
 }
 
@@ -40,5 +38,5 @@ func GetConfig(env string) Config {
 // Return:
 // 1. path => path of config
 func pathConfig(env string) string {
-	return configPath + env + ".yaml"
+	return infra.ConfigPath + env + ".yaml"
 }

@@ -1,10 +1,12 @@
 package entities
 
+import "time"
+
 // SysEntity struct
 type SysEntity struct {
-	ID          int
+	ID          int `gorm:"primaryKey"`
 	Type        string
 	CountryCode string
-	CreatedAt   string
-	UpdatedAt   string
+	CreatedAt   time.Time
+	UpdatedAt   time.Time
 }

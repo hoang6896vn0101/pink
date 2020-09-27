@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	configs "pink/infa/configs"
+	"pink/infrastructure/configs"
 )
 
 func main() {
