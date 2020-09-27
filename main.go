@@ -1,9 +1,14 @@
 package main
 
 import (
-	"pink/infrastructure/databases/mysql"
+	"os"
+	"pink/config"
 )
 
 func main() {
-	mysql.DB()
+	// Example:
+	// go run main.go development 3000
+	env := os.Args[1]
+	port := os.Args[2]
+	config.RunApp(env, port)
 }
