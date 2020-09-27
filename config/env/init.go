@@ -4,6 +4,7 @@ import (
 	filepath "path/filepath"
 	infra "pink/infrastructure"
 	lib "pink/libs"
+	"sync"
 )
 
 // Config struct
@@ -18,6 +19,7 @@ type Config struct {
 }
 
 var config *Config
+var mu sync.Mutex
 
 // GetConfig func
 // Arguments:
@@ -25,6 +27,8 @@ var config *Config
 // Return:
 // 1. MySQLConfig struct
 func GetConfig(env string) *Config {
+	mu.Lock()
+	defer mu.Unlock()
 	if config == nil {
 		var temp Config
 		path, err := filepath.Abs(configPath(env))
