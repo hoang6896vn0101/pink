@@ -16,6 +16,9 @@ type Config struct {
 		Password     string `yaml:"password"`
 		DatabaseName string `yaml:"database_name"`
 	}
+	Slack struct {
+		WebHook string `yaml:"web_hook"`
+	}
 }
 
 var config *Config
