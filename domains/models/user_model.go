@@ -1,6 +1,8 @@
 package models
 
-import e "pink/domains/entities"
+import (
+	e "pink/domains/entities"
+)
 
 // UserModel struct
 type UserModel struct {

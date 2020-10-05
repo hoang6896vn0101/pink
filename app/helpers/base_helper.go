@@ -3,6 +3,7 @@ package helpers
 import (
 	"encoding/json"
 	"net/http"
+	"pink/app/errors"
 )
 
 // FormatJSON func
@@ -14,8 +15,11 @@ import (
 func FormatJSON(writer http.ResponseWriter, data interface{}) {
 	json, err := json.Marshal(data)
 	if err != nil {
-		http.Error(writer, err.Error(), http.StatusInternalServerError)
-		return
+		e := errors.HandlersError{
+			Writer:  writer,
+			Message: err.Error(),
+			Status:  http.StatusInternalServerError}
+		e.Error()
 	}
 	writer.Header().Set("Content-Type", "application/json")
 	writer.Write(json)
