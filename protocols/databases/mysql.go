@@ -1,4 +1,4 @@
-package mysql
+package databases
 
 import (
 	"fmt"
@@ -7,6 +7,9 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
+
+// MySQL struct
+type MySQL struct{}
 
 // DB func
 // Arguments:
