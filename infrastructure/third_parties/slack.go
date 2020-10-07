@@ -1,4 +1,4 @@
-package slack
+package thirdparties
 
 import (
 	"bytes"
@@ -7,10 +7,13 @@ import (
 	"pink/config/env"
 )
 
+// Slack struct
+type Slack struct{}
+
 // PushNotification func
 // Arguments:
 // 1. message -> string
-func PushNotification(message string) {
+func (s Slack) PushNotification(message string) {
 	config := env.SlackConfig()
 	webHook := config.WebHook
 	mes := []byte(fmt.Sprintf(`{"text":"%s"}`, message))
