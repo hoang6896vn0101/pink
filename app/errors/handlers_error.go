@@ -16,8 +16,16 @@ type HandlersError struct {
 // Arguments:
 // 1. writer -> http.ResponseWriter
 // 2. message -> string
-func (h *HandlersError) Error() {
+func (h *HandlersError) InternalServerError() {
 	defer slack.PushNotification(h.Message)
 	http.Error(h.Writer, h.Message, h.Status)
 	panic(h.Message)
+}
+
+// AuthError func
+// Arguments:
+// 1. writer -> http.ResponseWriter
+// 2. message -> string
+func (h *HandlersError) AuthError() {
+	http.Error(h.Writer, h.Message, h.Status)
 }
