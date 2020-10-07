@@ -2,7 +2,7 @@ package databases
 
 import (
 	"fmt"
-	"pink/config/env"
+	configs "pink/settings/configs"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -17,12 +17,12 @@ type MySQL struct{}
 // Return:
 // 1. *gorm.DB
 func DB() *gorm.DB {
-	conf := env.MySQLConfig()
+	conf := configs.MySQLConfig()
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		conf.UserName, conf.Password, conf.Host, conf.Port, conf.DatabaseName)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		panic("Error: Connection fails")
+		panic(err.Error())
 	}
 	return db
 }

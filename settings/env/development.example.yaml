@@ -1,0 +1,14 @@
+mysql:
+  host: ""
+  port: ""
+  user_name: ""
+  password: ""
+  database_name: ""
+slack:
+  web_hook: ""
+mailer:
+    user_name: ""
+    password: ""
+    address: ""
+    domain: "
+    port: ""

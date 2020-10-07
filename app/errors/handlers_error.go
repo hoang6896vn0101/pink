@@ -2,7 +2,7 @@ package errors
 
 import (
 	"net/http"
-	thirdparties "pink/infrastructure/third_parties"
+	protocols "pink/protocols/third_parties"
 )
 
 // HandlersError func
@@ -17,7 +17,7 @@ type HandlersError struct {
 // 1. writer -> http.ResponseWriter
 // 2. message -> string
 func (h *HandlersError) InternalServerError() {
-	slack := thirdparties.Slack{}
+	slack := protocols.Slack{}
 	defer slack.PushNotification(h.Message)
 	http.Error(h.Writer, h.Message, h.Status)
 	panic(h.Message)

@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"net/http"
-	"pink/config/env"
+	configs "pink/settings/configs"
 )
 
 // Slack struct
@@ -14,7 +14,7 @@ type Slack struct{}
 // Arguments:
 // 1. message -> string
 func (s Slack) PushNotification(message string) {
-	config := env.SlackConfig()
+	config := configs.SlackConfig()
 	webHook := config.WebHook
 	mes := []byte(fmt.Sprintf(`{"text":"%s"}`, message))
 	req, err := http.NewRequest("POST", webHook, bytes.NewBuffer(mes))

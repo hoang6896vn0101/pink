@@ -3,10 +3,10 @@ package thirdparties
 import (
 	"fmt"
 	"net/smtp"
-	"pink/config/env"
+	configs "pink/settings/configs"
 )
 
-var config = env.MailerConfig()
+var config = configs.MailerConfig()
 var from = config.UserName
 var password = config.Password
 var domain = config.Domain
