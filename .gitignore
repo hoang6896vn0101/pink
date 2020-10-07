@@ -1,6 +1,4 @@
 # Ignores
 modd.conf
 pink
-config/env/development.yml
-
-config/env/development.yaml
+settings/env/development.yaml
