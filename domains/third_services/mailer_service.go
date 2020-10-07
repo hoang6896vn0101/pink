@@ -1,4 +1,4 @@
-package thirdservices
+package thirdparties
 
 import (
 	"fmt"
