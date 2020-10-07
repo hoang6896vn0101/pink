@@ -7,18 +7,32 @@ import (
 	"sync"
 )
 
+// Mysql Config
+type Mysql struct {
+	Host         string `yaml:"host"`
+	Port         string `yaml:"port"`
+	UserName     string `yaml:"user_name"`
+	Password     string `yaml:"password"`
+	DatabaseName string `yaml:"database_name"`
+}
+
+// Slack struct
+type Slack struct {
+	WebHook string `yaml:"web_hook"`
+}
+
+// Mailer struct
+type Mailer struct {
+	UserName string `yaml:"user_name"`
+	Password string `yaml:"password"`
+	Port     string `yaml:"port"`
+}
+
 // Config struct
 type Config struct {
-	Mysql struct {
-		Host         string `yaml:"host"`
-		Port         string `yaml:"port"`
-		UserName     string `yaml:"user_name"`
-		Password     string `yaml:"password"`
-		DatabaseName string `yaml:"database_name"`
-	}
-	Slack struct {
-		WebHook string `yaml:"web_hook"`
-	}
+	Mysql
+	Slack
+	Mailer
 }
 
 var config *Config
@@ -51,4 +65,19 @@ func GetConfig(env string) *Config {
 // 1. path => path of config
 func configPath(env string) string {
 	return infra.ConfigPath + env + ".yaml"
+}
+
+// MySQLConfig func
+func MySQLConfig() Mysql {
+	return GetConfig("development").Mysql
+}
+
+// SlackConfig func
+func SlackConfig() Slack {
+	return GetConfig("development").Slack
+}
+
+// MailerConfig func
+func MailerConfig() Mailer {
+	return GetConfig("development").Mailer
 }

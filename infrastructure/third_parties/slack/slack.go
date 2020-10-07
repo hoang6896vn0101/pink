@@ -11,8 +11,8 @@ import (
 // Arguments:
 // 1. message -> string
 func PushNotification(message string) {
-	slackConfig := env.GetConfig("development").Slack
-	webHook := slackConfig.WebHook
+	config := env.SlackConfig()
+	webHook := config.WebHook
 	mes := []byte(fmt.Sprintf(`{"text":"%s"}`, message))
 	req, err := http.NewRequest("POST", webHook, bytes.NewBuffer(mes))
 	req.Header.Set("Content-Type", "application/json")
