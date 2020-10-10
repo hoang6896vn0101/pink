@@ -1,8 +1,12 @@
 package thirdparties
 
 import (
+	"bytes"
 	"fmt"
+	"html/template"
 	"net/smtp"
+	"path/filepath"
+	manifest "pink/settings"
 	configs "pink/settings/configs"
 )
 
@@ -24,18 +28,35 @@ type MailerService struct {
 
 // MailAPIToken func
 func (service MailerService) MailAPIToken(email string) bool {
-	fmt.Print(config)
-	message := "Hello"
-	err := send(from, message, email)
+	emailPath := manifest.MailerConfigPath("mail_api_token")
+	path, err := filepath.Abs(emailPath)
+	if err != nil {
+		defer panic(err.Error())
+		return false
+	}
+	err = send(from, path, email)
 	if err != nil {
 		panic(err.Error())
 	}
 	return true
 }
 
-func send(from string, message string, to string) error {
+func send(from string, path string, to string) error {
 	domain := fmt.Sprintf("%s:%s", address, port)
-	err := smtp.SendMail(domain, smtp.PlainAuth("", from, password,
-		address), from, []string{to}, []byte(message))
+	auth := smtp.PlainAuth("", from, password, address)
+	message, _ := parseHTMLtoString(path, nil)
+	err := smtp.SendMail(domain, auth, from, []string{to}, []byte(message))
 	return err
+}
+
+func parseHTMLtoString(templatePath string, data interface{}) (string, error) {
+	t, err := template.ParseFiles(templatePath)
+	if err != nil {
+		return "", err
+	}
+	buf := new(bytes.Buffer)
+	if err = t.Execute(buf, data); err != nil {
+		return "", err
+	}
+	return buf.String(), nil
 }

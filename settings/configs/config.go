@@ -3,7 +3,7 @@ package configs
 import (
 	filepath "path/filepath"
 	lib "pink/libs"
-	protocols "pink/protocols"
+	manifest "pink/settings"
 	"sync"
 )
 
@@ -27,7 +27,7 @@ func getConfig(env string) *Config {
 	defer mu.Unlock()
 	if config == nil {
 		var temp Config
-		path, err := filepath.Abs(configPath(env))
+		path, err := filepath.Abs(manifest.EnvConfigPath(env))
 		if err != nil {
 			panic(err.Error())
 		}
@@ -35,13 +35,4 @@ func getConfig(env string) *Config {
 		config = &temp
 	}
 	return config
-}
-
-// configPath
-// Arguments:
-// 1. env => Env of instance
-// Return:
-// 1. path => path of config
-func configPath(env string) string {
-	return protocols.ConfigPath + env + ".yaml"
 }
