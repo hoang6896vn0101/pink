@@ -1,6 +1,4 @@
 # Ignores
-infrastructure/configs/sanbox.yaml
-infrastructure/configs/production.yaml
-infrastructure/configs/development.yaml
 modd.conf
 pink
+settings/env/development.yaml

@@ -15,11 +15,11 @@ import (
 func FormatJSON(writer http.ResponseWriter, data interface{}) {
 	json, err := json.Marshal(data)
 	if err != nil {
-		e := errors.HandlersError{
+		handlerError := errors.HandlersError{
 			Writer:  writer,
 			Message: err.Error(),
 			Status:  http.StatusInternalServerError}
-		e.Error()
+		handlerError.InternalServerError()
 	}
 	writer.Header().Set("Content-Type", "application/json")
 	writer.Write(json)

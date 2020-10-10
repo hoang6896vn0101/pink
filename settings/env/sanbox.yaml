@@ -1,0 +1,5 @@
+mysql:
+  host: "sanbox"
+  port: "3306"
+  user_name: "root"
+  password: "root"
